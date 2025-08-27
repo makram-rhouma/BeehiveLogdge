@@ -1,0 +1,198 @@
+version: '3.8'
+
+services:
+  # Main website service (Nginx + Static files)
+  beehive-lodge:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: beehive-lodge-web
+    ports:
+      - "80:80"
+    volumes:
+      # Mount logs for persistence
+      - ./logs:/var/log/nginx
+      - ./data:/usr/share/nginx/html/logs
+      # Custom nginx config if needed
+      # - ./nginx-custom.conf:/etc/nginx/nginx.conf:ro
+    environment:
+      - TZ=Europe/Paris
+      - NGINX_HOST=localhost
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    networks:
+      - beehive-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.beehive.rule=Host(`beechivelodge.com`,`www.beechivelodge.com`)"
+      - "traefik.http.services.beehive.loadbalancer.server.port=80"
+
+  # PHP service for contact forms (optional)
+  php-backend:
+    image: php:8.1-fpm-alpine
+    container_name: beehive-lodge-php
+    volumes:
+      - ./api:/var/www/html/api
+      - ./logs:/var/www/html/logs
+      # Custom PHP configuration
+      - ./php/php.ini:/usr/local/etc/php/php.ini:ro
+    environment:
+      - TZ=Europe/Paris
+      - PHP_UPLOAD_MAX_FILESIZE=16M
+      - PHP_POST_MAX_SIZE=16M
+    restart: unless-stopped
+    working_dir: /var/www/html
+    networks:
+      - beehive-network
+    # Install required PHP extensions
+    command: >
+      sh -c "
+        apk add --no-cache curl libzip-dev zip unzip &&
+        docker-php-ext-configure zip &&
+        docker-php-ext-install zip curl json &&
+        docker-php-ext-enable curl &&
+        php-fpm
+      "
+
+  # Redis for session storage and caching (optional)
+  redis:
+    image: redis:7-alpine
+    container_name: beehive-lodge-redis
+    volumes:
+      - redis_data:/data
+    environment:
+      - TZ=Europe/Paris
+    restart: unless-stopped
+    networks:
+      - beehive-network
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-beehive2024}
+
+  # Database for form submissions (optional)
+  database:
+    image: mariadb:10.9
+    container_name: beehive-lodge-db
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD:-root123}
+      - MYSQL_DATABASE=${DB_NAME:-beehive_lodge}
+      - MYSQL_USER=${DB_USER:-beehive}
+      - MYSQL_PASSWORD=${DB_PASSWORD:-beehive123}
+      - TZ=Europe/Paris
+    restart: unless-stopped
+    networks:
+      - beehive-network
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # Monitoring with Prometheus (optional)
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: beehive-lodge-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+      - '--web.enable-lifecycle'
+    restart: unless-stopped
+    networks:
+      - beehive-network
+    profiles:
+      - monitoring
+
+  # Grafana for dashboards (optional)
+  grafana:
+    image: grafana/grafana:latest
+    container_name: beehive-lodge-grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin123}
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - TZ=Europe/Paris
+    restart: unless-stopped
+    networks:
+      - beehive-network
+    profiles:
+      - monitoring
+
+  # Backup service
+  backup:
+    image: alpine:latest
+    container_name: beehive-lodge-backup
+    volumes:
+      - ./:/app
+      - ./backups:/backups
+      - db_data:/db_data:ro
+    environment:
+      - TZ=Europe/Paris
+      - BACKUP_SCHEDULE=0 2 * * *  # Daily at 2 AM
+    command: >
+      sh -c "
+        apk add --no-cache tar gzip curl &&
+        echo '#!/bin/sh
+        DATE=\$(date +%%Y%%m%%d_%%H%%M%%S)
+        mkdir -p /backups/\$DATE
+        
+        # Backup website files
+        tar -czf /backups/\$DATE/website.tar.gz -C /app --exclude=backups --exclude=logs .
+        
+        # Backup database if exists
+        if [ -d /db_data ]; then
+          tar -czf /backups/\$DATE/database.tar.gz -C /db_data .
+        fi
+        
+        # Keep only last 7 backups
+        find /backups -maxdepth 1 -type d -mtime +7 -exec rm -rf {} \;
+        
+        echo \"Backup completed: \$DATE\"' > /backup.sh &&
+        chmod +x /backup.sh &&
+        
+        # Install crond and setup cron job
+        apk add --no-cache dcron &&
+        echo \"\${BACKUP_SCHEDULE} /backup.sh >> /var/log/backup.log 2>&1\" | crontab - &&
+        
+        # Run initial backup and start cron
+        /backup.sh &&
+        crond -f
+      "
+    restart: unless-stopped
+    networks:
+      - beehive-network
+    profiles:
+      - backup
+
+networks:
+  beehive-network:
+    driver: bridge
+    name: beehive-lodge-network
+
+volumes:
+  db_data:
+    name: beehive_lodge_db
+  redis_data:
+    name: beehive_lodge_redis
+  prometheus_data:
+    name: beehive_lodge_prometheus
+  grafana_data:
+    name: beehive_lodge_grafana

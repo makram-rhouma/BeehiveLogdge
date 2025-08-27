@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Demandez une démo personnalisée de Beehive Lodge - Visite privée, consultation et dégustation exclusive">
+    <meta name="keywords" content="demo, visite, beehive lodge, consultation, dégustation, réservation">
+    <title>Demander une Démo - Beehive Lodge</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        /* Demo Page Specific Styles */
+        .demo-hero {
+            background: linear-gradient(135deg, rgba(212, 160, 23, 0.9), rgba(184, 134, 11, 0.9)), url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2080&q=80') center/cover;
+            padding: 120px 0 80px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .demo-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(255, 215, 0, 0.3) 0%, transparent 50%), 
+                        radial-gradient(circle at 70% 20%, rgba(255, 215, 0, 0.2) 0%, transparent 50%);
+            animation: goldShimmer 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes goldShimmer {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+        
+        .form-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            padding: 3rem;
+            margin-top: -50px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .form-control, .form-select {
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 15px 20px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-gold);
+            box-shadow: 0 0 0 0.25rem rgba(212, 160, 23, 0.25);
+            background: white;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+        
+        .required::after {
+            content: '*';
+            color: #dc3545;
+            margin-left: 3px;
+        }
+        
+        .time-slot {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .time-option {
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .time-option input[type="radio"] {
+            display: none;
+        }
+        
+        .time-option label {
+            display: block;
+            padding: 15px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+            font-weight: 500;
+        }
+        
+        .time-option input[type="radio"]:checked + label {
+            background: linear-gradient(135deg, var(--primary-gold), var(--primary-dark));
+            color: white;
+            border-color: var(--primary-gold);
+            transform: scale(1.05);
+        }
+        
+        .time-option label:hover {
+            border-color: var(--primary-gold);
+            background: rgba(212, 160, 23, 0.1);
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-gold);
+        }
+        
+        .benefit-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(212, 160, 23, 0.1), rgba(184, 134, 11, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: var(--primary-gold);
+            font-size: 1.5rem;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            position: relative;
+            border: 1px solid rgba(212, 160, 23, 0.1);
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 30px;
+            font-size: 4rem;
+            color: var(--primary-gold);
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .testimonial-rating {
+            color: var(--primary-gold);
+            margin-bottom: 15px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+        
+        .author-info h6 {
+            margin: 0;
+            color: var(--text-dark);
+        }
+        
+        .author-info small {
+            color: var(--text-light);
+        }
+        
+        .success-message {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            display: none;
+            animation: slideInUp 0.5s ease;
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .error-message {
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .demo-features {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 30px;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(212, 160, 23, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-list li i {
+            color: var(--primary-gold);
+            margin-right: 15px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .floating-elements::before,
+        .floating-elements::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .floating-elements::before {
+            top: 20%;
+            left: 10%;
+            animation-delay: -2s;
+        }
+        
+        .floating-elements::after {
+            top: 60%;
+            right: 15%;
+            animation-delay: -4s;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-text">Beehive Lodge</span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">À propos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="features.html">Fonctionnalités</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary ms-2 active" href="demo.html">Demander une démo</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="demo-hero">
+        <div class="floating-elements"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h1 class="display-3 mb-4" data-aos="fade-up">Demander une Démo</h1>
+                    <p class="lead mb-4" data-aos="fade-up" data-aos-delay="200">
+                        Découvrez l'excellence de Beehive Lodge lors d'une visite personnalisée exclusive
+                    </p>
+                    <div class="row text-center mt-5">
+                        <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                            <i class="fas fa-clock fa-2x mb-3"></i>
+                            <h5>Durée</h5>
+                            <p>2 heures complètes</p>
+                        </div>
+                        <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+                            <i class="fas fa-user-tie fa-2x mb-3"></i>
+                            <h5>Guide Expert</h5>
+                            <p>Accompagnement personnalisé</p>
+                        </div>
+                        <div class="col-md-4" data-aos="fade-up" data-aos-delay="500">
+                            <i class="fas fa-gift fa-2x mb-3"></i>
+                            <h5>Dégustation</h5>
+                            <p>Menu exclusif inclus</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Request Form -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="form-container" data-aos="fade-right">
+                        <h2 class="mb-4 text-center">Réservez Votre Démo Personnalisée</h2>
+                        
+                        <div class="success-message" id="successMessage">
+                            <i class="fas fa-check-circle fa-2x mb-3"></i>
+                            <h4>Demande Envoyée avec Succès!</h4>
+                            <p>Notre équipe vous contactera dans les 24h pour confirmer votre rendez-vous.</p>
+                        </div>
+                        
+                        <form id="demoForm" novalidate>
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <label for="firstName" class="form-label required">Prénom</label>
+                                    <input type="text" class="form-control" id="firstName" required>
+                                    <div class="error-message" id="firstNameError">Veuillez saisir votre prénom.</div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <label for="lastName" class="form-label required">Nom</label>
+                                    <input type="text" class="form-control" id="lastName" required>
+                                    <div class="error-message" id="lastNameError">Veuillez saisir votre nom.</div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <label for="email" class="form-label required">Email</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                    <div class="error-message" id="emailError">Veuillez saisir un email valide.</div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <label for="phone" class="form-label required">Téléphone</label>
+                                    <input type="tel" class="form-control" id="phone" required>
+                                    <div class="error-message" id="phoneError">Veuillez saisir votre numéro de téléphone.</div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="company" class="form-label">Entreprise (optionnel)</label>
+                                <input type="text" class="form-control" id="company" placeholder="Nom de votre entreprise">
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <label for="preferredDate" class="form-label required">Date Souhaitée</label>
+                                    <input type="date" class="form-control" id="preferredDate" required>
+                                    <div class="error-message" id="dateError">Veuillez sélectionner une date.</div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <label for="guests" class="form-label required">Nombre d'Invités</label>
+                                    <select class="form-select" id="guests" required>
+                                        <option value="">Sélectionnez...</option>
+                                        <option value="1">1 personne</option>
+                                        <option value="2">2 personnes</option>
+                                        <option value="3">3 personnes</option>
+                                        <option value="4">4 personnes</option>
+                                        <option value="5">5 personnes</option>
+                                        <option value="6+">6+ personnes</option>
+                                    </select>
+                                    <div class="error-message" id="guestsError">Veuillez sélectionner le nombre d'invités.</div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="form-label required">Créneau Horaire Préféré</label>
+                                <div class="time-slot">
+                                    <div class="time-option">
+                                        <input type="radio" id="morning" name="timeSlot" value="morning" required>
+                                        <label for="morning">
+                                            <i class="fas fa-sun"></i><br>
+                                            <strong>Matinée</strong><br>
+                                            10h00 - 12h00
+                                        </label>
+                                    </div>
+                                    <div class="time-option">
+                                        <input type="radio" id="afternoon" name="timeSlot" value="afternoon" required>
+                                        <label for="afternoon">
+                                            <i class="fas fa-cloud-sun"></i><br>
+                                            <strong>Après-midi</strong><br>
+                                            14h00 - 16h00
+                                        </label>
+                                    </div>
+                                    <div class="time-option">
+                                        <input type="radio" id="evening" name="timeSlot" value="evening" required>
+                                        <label for="evening">
+                                            <i class="fas fa-moon"></i><br>
+                                            <strong>Soirée</strong><br>
+                                            18h00 - 20h00
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="error-message" id="timeSlotError">Veuillez sélectionner un créneau horaire.</div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="interests" class="form-label">Centres d'Intérêt Particuliers</label>
+                                <select class="form-select" id="interests" multiple>
+                                    <option value="spa">Services Spa & Bien-être</option>
+                                    <option value="dining">Restauration Gastronomique</option>
+                                    <option value="events">Organisation d'Événements</option>
+                                    <option value="family">Services Familiaux</option>
+                                    <option value="business">Espaces Business</option>
+                                    <option value="outdoor">Activités Extérieures</option>
+                                </select>
+                                <small class="text-muted">Maintenez Ctrl (Cmd sur Mac) pour sélectionner plusieurs options</small>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="message" class="form-label">Message Additionnel</label>
+                                <textarea class="form-control" id="message" rows="4" placeholder="Partagez-nous vos attentes particulières, questions ou besoins spécifiques..."></textarea>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-calendar-check me-2"></i>
+                                    Réserver Ma Démo
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="demo-features" data-aos="fade-left">
+                        <h3 class="mb-4">
+                            <i class="fas fa-star text-primary me-2"></i>
+                            Votre Démo Inclut
+                        </h3>
+                        <ul class="feature-list">
+                            <li>
+                                <i class="fas fa-route"></i>
+                                Visite guidée complète de nos installations
+                            </li>
+                            <li>
+                                <i class="fas fa-utensils"></i>
+                                Dégustation de notre menu signature
+                            </li>
+                            <li>
+                                <i class="fas fa-spa"></i>
+                                Découverte de nos espaces bien-être
+                            </li>
+                            <li>
+                                <i class="fas fa-handshake"></i>
+                                Consultation personnalisée avec notre équipe
+                            </li>
+                            <li>
+                                <i class="fas fa-bed"></i>
+                                Présentation de nos suites premium
+                            </li>
+                            <li>
+                                <i class="fas fa-gift"></i>
+                                Présent de bienvenue exclusif
+                            </li>
+                            <li>
+                                <i class="fas fa-percent"></i>
+                                Offre spéciale réservation immédiate
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="text-center p-4" style="background: linear-gradient(135deg, rgba(212, 160, 23, 0.1), rgba(184, 134, 11, 0.1)); border-radius: 20px;">
+                        <i class="fas fa-phone fa-2x text-primary mb-3"></i>
+                        <h5>Besoin d'Aide ?</h5>
+                        <p class="mb-3">Notre équipe est là pour vous accompagner</p>
+                        <a href="tel:+33123456789" class="btn btn-outline-primary">
+                            <i class="fas fa-phone me-2"></i>+33 1 23 45 67 89
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 mb-3" data-aos="fade-up">Pourquoi Demander une Démo ?</h2>
+                <p class="lead text-muted" data-aos="fade-up" data-aos-delay="200">Découvrez tous les avantages d'une visite personnalisée</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="benefit-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="benefit-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-2">Découverte Personnalisée</h5>
+                            <p class="mb-0">Explorez nos installations avec un guide expert qui s'adapte à vos besoins et centres d'intérêt.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="benefit-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="benefit-icon">
+                            <i class="fas fa-wine-glass"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-2">Dégustation Exclusive</h5>
+                            <p class="mb-0">Savourez une sélection de nos meilleures spécialités culinaires préparées par notre chef.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="benefit-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="benefit-icon">
+                            <i class="fas fa-user-friends"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-2">Consultation Gratuite</h5>
+                            <p class="mb-0">Bénéficiez des conseils de nos experts pour planifier votre séjour idéal.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-lg-4 mb-4">
+                    <div class="benefit-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="benefit-icon">
+                            <i class="fas fa-tag"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-2">Offres Préférentielles</h5>
+                            <p class="mb-0">Accédez à des tarifs exclusifs et des packages sur mesure non disponibles ailleurs.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="benefit-item" data-aos="fade-up" data-aos-delay="500">
+                        <div class="benefit-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-2">Flexibilité Totale</h5>
+                            <p class="mb-0">Choisissez le créneau qui vous convient, nous nous adaptons à votre emploi du temps.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="benefit-item" data-aos="fade-up" data-aos-delay="600">
+                        <div class="benefit-icon">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-2">Service VIP</h5>
+                            <p class="mb-0">Profitez d'un accueil privilégié et d'un service personnalisé digne des plus grands établissements.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 mb-3" data-aos="fade-up">Témoignages de Nos Visiteurs</h2>
+                <p class="lead text-muted" data-aos="fade-up" data-aos-delay="200">Découvrez les expériences de ceux qui ont vécu notre démo</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="testimonial-rating mb-3">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="mb-4">La démo de Beehive Lodge a dépassé toutes mes attentes. L'accueil était chaleureux, la visite complète et la dégustation exceptionnelle. J'ai réservé immédiatement !</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b5c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Marie Laurent" class="author-avatar">
+                            <div class="author-info">
+                                <h6>Marie Laurent</h6>
+                                <small>Directrice Marketing</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="testimonial-rating mb-3">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="mb-4">Une expérience unique ! L'équipe a pris le temps de comprendre nos besoins pour notre événement d'entreprise. Le professionnalisme et l'attention aux détails sont remarquables.</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Pierre Dubois" class="author-avatar">
+                            <div class="author-info">
+                                <h6>Pierre Dubois</h6>
+                                <small>Chef d'Entreprise</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="testimonial-rating mb-3">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="mb-4">Parfait pour découvrir l'établissement avant de réserver pour notre lune de miel. Les espaces sont magnifiques et l'offre spa est tout simplement divine. Merci pour ce moment privilégié !</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Sophie Martin" class="author-avatar">
+                            <div class="author-info">
+                                <h6>Sophie Martin</h6>
+                                <small>Future Mariée</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h2 class="display-5 mb-3" data-aos="fade-right">N'Attendez Plus !</h2>
+                    <p class="lead mb-0" data-aos="fade-right" data-aos-delay="200">
+                        Réservez votre démo dès aujourd'hui et découvrez pourquoi Beehive Lodge est le choix de l'excellence.
+                    </p>
+                </div>
+                <div class="col-lg-4 text-end">
+                    <a href="#demoForm" class="btn btn-light btn-lg" data-aos="fade-left">
+                        <i class="fas fa-arrow-up me-2"></i>Réserver Maintenant
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="mb-3">Beehive Lodge</h5>
+                    <p class="mb-3">Votre destination de luxe pour un séjour d'exception.</p>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 mb-4">
+                    <h6 class="mb-3">Navigation</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-light">Accueil</a></li>
+                        <li><a href="about.html" class="text-light">À propos</a></li>
+                        <li><a href="features.html" class="text-light">Services</a></li>
+                        <li><a href="blog.html" class="text-light">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 mb-4">
+                    <h6 class="mb-3">Services</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light">Hébergement</a></li>
+                        <li><a href="#" class="text-light">Restauration</a></li>
+                        <li><a href="#" class="text-light">Événements</a></li>
+                        <li><a href="#" class="text-light">Bien-être</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h6 class="mb-3">Contact</h6>
+                    <p><i class="fas fa-map-marker-alt me-2"></i>123 Avenue Luxe, Ville</p>
+                    <p><i class="fas fa-phone me-2"></i>+33 1 23 45 67 89</p>
+                    <p><i class="fas fa-envelope me-2"></i>info@beechivelodge.com</p>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0">&copy; 2024 Beehive Lodge. Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/33123456789" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    
+    <script>
+        // Demo Form Validation and Submission
+        document.getElementById('demoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Reset previous error messages
+            const errorMessages = document.querySelectorAll('.error-message');
+            errorMessages.forEach(msg => msg.style.display = 'none');
+            
+            const formControls = document.querySelectorAll('.form-control, .form-select');
+            formControls.forEach(control => control.classList.remove('is-invalid'));
+            
+            let isValid = true;
+            
+            // Validate required fields
+            const firstName = document.getElementById('firstName');
+            const lastName = document.getElementById('lastName');
+            const email = document.getElementById('email');
+            const phone = document.getElementById('phone');
+            const preferredDate = document.getElementById('preferredDate');
+            const guests = document.getElementById('guests');
+            const timeSlot = document.querySelector('input[name="timeSlot"]:checked');
+            
+            if (!firstName.value.trim()) {
+                showError('firstNameError', firstName);
+                isValid = false;
+            }
+            
+            if (!lastName.value.trim()) {
+                showError('lastNameError', lastName);
+                isValid = false;
+            }
+            
+            if (!email.value.trim() || !isValidEmail(email.value)) {
+                showError('emailError', email);
+                isValid = false;
+            }
+            
+            if (!phone.value.trim()) {
+                showError('phoneError', phone);
+                isValid = false;
+            }
+            
+            if (!preferredDate.value) {
+                showError('dateError', preferredDate);
+                isValid = false;
+            } else {
+                // Check if date is not in the past
+                const selectedDate = new Date(preferredDate.value);
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                
+                if (selectedDate < today) {
+                    document.getElementById('dateError').textContent = 'Veuillez sélectionner une date future.';
+                    showError('dateError', preferredDate);
+                    isValid = false;
+                }
+            }
+            
+            if (!guests.value) {
+                showError('guestsError', guests);
+                isValid = false;
+            }
+            
+            if (!timeSlot) {
+                document.getElementById('timeSlotError').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (isValid) {
+                // Simulate form submission
+                this.style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+                
+                // Smooth scroll to success message
+                document.getElementById('successMessage').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+                
+                // Optional: Send form data to server here
+                console.log('Form submitted successfully!');
+            }
+        });
+        
+        function showError(errorId, inputElement) {
+            document.getElementById(errorId).style.display = 'block';
+            inputElement.classList.add('is-invalid');
+        }
+        
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+        
+        // Set minimum date to today
+        document.getElementById('preferredDate').min = new Date().toISOString().split('T')[0];
+        
+        // Smooth scroll for CTA button
+        document.querySelector('a[href="#demoForm"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('demoForm').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+    </script>
+</body>
+</html>

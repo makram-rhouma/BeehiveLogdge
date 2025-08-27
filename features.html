@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Découvrez tous nos services premium : hébergement de luxe, restauration, événements et séjours familiaux chez Beehive Lodge.">
+    <title>Fonctionnalités - Beehive Lodge</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-text">Beehive Lodge</span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">À propos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="features.html">Fonctionnalités</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary ms-2" href="demo.html">Demander une démo</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header bg-primary text-white py-5" style="margin-top: 80px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1 class="display-3 mb-3" data-aos="fade-up">Nos Services</h1>
+                    <p class="lead mb-0" data-aos="fade-up" data-aos-delay="200">Une gamme complète de services premium pour votre confort</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Hébergement -->
+                <div class="col-lg-6 mb-5">
+                    <div class="service-card h-100" data-aos="fade-up" data-aos-delay="100">
+                        <div class="service-image">
+                            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                                 alt="Hébergement de luxe" class="img-fluid">
+                            <div class="service-overlay">
+                                <div class="service-icon">
+                                    <i class="fas fa-bed fa-3x"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="mb-3">Hébergement de Luxe</h3>
+                            <p class="text-muted mb-4">Chambres et suites somptueuses avec vue panoramique, équipées des dernières technologies pour votre confort optimal.</p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check text-primary me-2"></i>Suites premium avec balcon privé</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>Literie haut de gamme</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>Mini-bar et room service 24h/24</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>WiFi haut débit gratuit</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3">En savoir plus</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Restauration -->
+                <div class="col-lg-6 mb-5">
+                    <div class="service-card h-100" data-aos="fade-up" data-aos-delay="200">
+                        <div class="service-image">
+                            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                                 alt="Restauration gastronomique" class="img-fluid">
+                            <div class="service-overlay">
+                                <div class="service-icon">
+                                    <i class="fas fa-utensils fa-3x"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="mb-3">Restauration Gastronomique</h3>
+                            <p class="text-muted mb-4">Cuisine raffinée préparée par nos chefs étoilés, avec des ingrédients locaux et de saison dans un cadre élégant.</p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check text-primary me-2"></i>Restaurant gastronomique</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>Bar à cocktails premium</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>Service en chambre de luxe</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>Menus personnalisés</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3">Découvrir</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Événements -->
+                <div class="col-lg-6 mb-5">
+                    <div class="service-card h-100" data-aos="fade-up" data-aos-delay="300">
+                        <div class="service-image">
+                            <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" 
+                                 alt="Organisation d'événements" class="img-fluid">
+                            <div class="service-overlay">
+                                <div class="service-icon">
+                                    <i class="fas fa-calendar-alt fa-3x"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="mb-3">Organisation d'Événements</h3>
+                            <p class="text-muted mb-4">Salles de réception élégantes et service événementiel complet pour mariages, conférences et célébrations privées.</p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check text-primary me-2"></i>Salles modulables</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>Équipement audiovisuel</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>Service traiteur personnalisé</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>Wedding planner dédié</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3">Planifier</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Séjours Familiaux -->
+                <div class="col-lg-6 mb-5">
+                    <div class="service-card h-100" data-aos="fade-up" data-aos-delay="400">
+                        <div class="service-image">
+                            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                                 alt="Séjours familiaux" class="img-fluid">
+                            <div class="service-overlay">
+                                <div class="service-icon">
+                                    <i class="fas fa-users fa-3x"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="mb-3">Séjours Familiaux</h3>
+                            <p class="text-muted mb-4">Espaces et activités adaptés aux familles, avec des services dédiés aux enfants pour des vacances inoubliables.</p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check text-primary me-2"></i>Chambres familiales spacieuses</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>Club enfants avec animations</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>Aire de jeux sécurisée</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>Menus enfants adaptés</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3">Réserver</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Services -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-4 mb-3" data-aos="fade-up">Services Additionnels</h2>
+                    <p class="lead text-muted" data-aos="fade-up" data-aos-delay="200">Pour une expérience complète et personnalisée</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="additional-service text-center" data-aos="fade-up" data-aos-delay="100">
+                        <div class="service-icon mb-3">
+                            <i class="fas fa-spa fa-2x text-primary"></i>
+                        </div>
+                        <h5>Spa & Bien-être</h5>
+                        <p class="text-muted">Massages relaxants et soins de beauté</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="additional-service text-center" data-aos="fade-up" data-aos-delay="200">
+                        <div class="service-icon mb-3">
+                            <i class="fas fa-car fa-2x text-primary"></i>
+                        </div>
+                        <h5>Service Voiturier</h5>
+                        <p class="text-muted">Parking privé et service voiturier</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="additional-service text-center" data-aos="fade-up" data-aos-delay="300">
+                        <div class="service-icon mb-3">
+                            <i class="fas fa-dumbbell fa-2x text-primary"></i>
+                        </div>
+                        <h5>Fitness Center</h5>
+                        <p class="text-muted">Salle de sport équipée et moderne</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="additional-service text-center" data-aos="fade-up" data-aos-delay="400">
+                        <div class="service-icon mb-3">
+                            <i class="fas fa-wifi fa-2x text-primary"></i>
+                        </div>
+                        <h5>WiFi Premium</h5>
+                        <p class="text-muted">Connexion haut débit dans tout l'établissement</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-4 mb-3" data-aos="fade-up">Nos Formules</h2>
+                    <p class="lead text-muted" data-aos="fade-up" data-aos-delay="200">Des packages adaptés à tous vos besoins</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="pricing-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="pricing-header">
+                            <h4>Essentiel</h4>
+                            <div class="price">
+                                <span class="currency">€</span>
+                                <span class="amount">199</span>
+                                <span class="period">/nuit</span>
+                            </div>
+                        </div>
+                        <div class="pricing-features">
+                            <ul>
+                                <li><i class="fas fa-check text-primary me-2"></i>Chambre standard</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>Petit-déjeuner inclus</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>WiFi gratuit</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>Service de base</li>
+                            </ul>
+                        </div>
+                        <a href="contact.html" class="btn btn-outline-primary btn-block">Choisir</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="pricing-card featured" data-aos="fade-up" data-aos-delay="200">
+                        <div class="badge">Populaire</div>
+                        <div class="pricing-header">
+                            <h4>Premium</h4>
+                            <div class="price">
+                                <span class="currency">€</span>
+                                <span class="amount">299</span>
+                                <span class="period">/nuit</span>
+                            </div>
+                        </div>
+                        <div class="pricing-features">
+                            <ul>
+                                <li><i class="fas fa-check text-primary me-2"></i>Suite avec balcon</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>Demi-pension</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>Accès Spa</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>Service concierge</li>
+                            </ul>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary btn-block">Choisir</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="pricing-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="pricing-header">
+                            <h4>Luxe</h4>
+                            <div class="price">
+                                <span class="currency">€</span>
+                                <span class="amount">499</span>
+                                <span class="period">/nuit</span>
+                            </div>
+                        </div>
+                        <div class="pricing-features">
+                            <ul>
+                                <li><i class="fas fa-check text-primary me-2"></i>Suite présidentielle</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>Pension complète</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>Tous services inclus</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>Majordome personnel</li>
+                            </ul>
+                        </div>
+                        <a href="contact.html" class="btn btn-outline-primary btn-block">Choisir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h2 class="display-5 mb-3" data-aos="fade-right">Prêt à découvrir nos services ?</h2>
+                    <p class="lead mb-0" data-aos="fade-right" data-aos-delay="200">Contactez-nous pour une consultation personnalisée et découvrez la formule qui vous convient</p>
+                </div>
+                <div class="col-lg-4 text-end">
+                    <a href="demo.html" class="btn btn-light btn-lg" data-aos="fade-left">Demander une démo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="mb-3">Beehive Lodge</h5>
+                    <p class="mb-3">Votre destination de luxe pour un séjour d'exception.</p>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 mb-4">
+                    <h6 class="mb-3">Navigation</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-light">Accueil</a></li>
+                        <li><a href="about.html" class="text-light">À propos</a></li>
+                        <li><a href="features.html" class="text-light">Services</a></li>
+                        <li><a href="blog.html" class="text-light">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 mb-4">
+                    <h6 class="mb-3">Services</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light">Hébergement</a></li>
+                        <li><a href="#" class="text-light">Restauration</a></li>
+                        <li><a href="#" class="text-light">Événements</a></li>
+                        <li><a href="#" class="text-light">Bien-être</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h6 class="mb-3">Contact</h6>
+                    <p><i class="fas fa-map-marker-alt me-2"></i>123 Avenue Luxe, Ville</p>
+                    <p><i class="fas fa-phone me-2"></i>+33 1 23 45 67 89</p>
+                    <p><i class="fas fa-envelope me-2"></i>info@beechivelodge.com</p>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0">&copy; 2024 Beehive Lodge. Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/33123456789" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+
+    <style>
+    .page-header {
+        background: linear-gradient(135deg, var(--primary-gold), var(--primary-dark)) !important;
+    }
+    
+    .service-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: all 0.3s ease;
+    }
+    
+    .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-hover);
+    }
+    
+    .service-image {
+        position: relative;
+        height: 250px;
+        overflow: hidden;
+    }
+    
+    .service-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+    
+    .service-card:hover .service-image img {
+        transform: scale(1.1);
+    }
+    
+    .service-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(45deg, rgba(212, 160, 23, 0.8), rgba(184, 134, 11, 0.8));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+    
+    .service-card:hover .service-overlay {
+        opacity: 1;
+    }
+    
+    .service-icon {
+        color: white;
+        transform: translateY(20px);
+        transition: all 0.3s ease;
+    }
+    
+    .service-card:hover .service-icon {
+        transform: translateY(0);
+    }
+    
+    .service-content {
+        padding: 2rem;
+    }
+    
+    .service-features {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .service-features li {
+        margin-bottom: 0.5rem;
+    }
+    
+    .additional-service {
+        padding: 1.5rem;
+        background: white;
+        border-radius: 15px;
+        box-shadow: var(--shadow);
+        transition: all 0.3s ease;
+        height: 100%;
+    }
+    
+    .additional-service:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-hover);
+    }
+    
+    .pricing-card {
+        background: white;
+        border-radius: 20px;
+        padding: 2rem;
+        box-shadow: var(--shadow);
+        text-align: center;
+        position: relative;
+        transition: all 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .pricing-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-hover);
+    }
+    
+    .pricing-card.featured {
+        border: 3px solid var(--primary-gold);
+        transform: scale(1.05);
+    }
+    
+    .pricing-card .badge {
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--primary-gold);
+        color: white;
+        padding: 5px 20px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+    
+    .pricing-header {
+        margin-bottom: 2rem;
+    }
+    
+    .price {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary-gold);
+        margin: 1rem 0;
+    }
+    
+    .currency {
+        font-size: 1.5rem;
+        vertical-align: top;
+    }
+    
+    .period {
+        font-size: 1rem;
+        color: var(--text-light);
+    }
+    
+    .pricing-features {
+        flex-grow: 1;
+        margin-bottom: 2rem;
+    }
+    
+    .pricing-features ul {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .pricing-features li {
+        margin-bottom: 1rem;
+        text-align: left;
+    }
+    
+    .btn-block {
+        width: 100%;
+        margin-top: auto;
+    }
+    
+    @media (max-width: 768px) {
+        .service-image {
+            height: 200px;
+        }
+        
+        .service-content {
+            padding: 1.5rem;
+        }
+        
+        .pricing-card.featured {
+            transform: none;
+            margin-bottom: 2rem;
+        }
+    }
+    </style>
+</body>
+</html>

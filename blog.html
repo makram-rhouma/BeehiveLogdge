@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Beehive Lodge - Blog et actualités. Découvrez nos conseils voyage, expériences bien-être et témoignages clients.">
+    <meta name="keywords" content="blog, voyage, luxe, bien-être, spa, hébergement, beehive lodge">
+    <title>Beehive Lodge - Notre Blog</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        /* Blog Specific Styles */
+        .blog-header {
+            background: linear-gradient(135deg, var(--primary-gold), var(--primary-dark));
+            padding: 150px 0 100px;
+            margin-top: 0px;
+            color: white;
+            text-align: center;
+        }
+        
+        .blog-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            height: 100%;
+            border: 1px solid rgba(212, 160, 23, 0.1);
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary-gold);
+        }
+        
+        .blog-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .blog-card:hover .blog-image {
+            transform: scale(1.05);
+        }
+        
+        .blog-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.3));
+            transition: all 0.3s ease;
+        }
+        
+        .blog-card:hover .blog-image::before {
+            background: linear-gradient(to bottom, transparent, rgba(212, 160, 23, 0.4));
+        }
+        
+        .blog-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, var(--primary-gold), var(--primary-dark));
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 2;
+        }
+        
+        .blog-content {
+            padding: 1.5rem;
+        }
+        
+        .blog-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+            color: var(--text-dark);
+        }
+        
+        .blog-title:hover {
+            color: var(--primary-gold);
+        }
+        
+        .blog-excerpt {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+        
+        .blog-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .blog-author i {
+            color: var(--primary-gold);
+            margin-right: 5px;
+        }
+        
+        .blog-date i {
+            color: var(--primary-gold);
+            margin-right: 5px;
+        }
+        
+        .read-more-btn {
+            background: linear-gradient(135deg, var(--primary-gold), var(--primary-dark));
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .read-more-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 160, 23, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+        
+        .category-filters {
+            margin-bottom: 3rem;
+        }
+        
+        .filter-btn {
+            background: transparent;
+            border: 2px solid var(--primary-gold);
+            color: var(--primary-gold);
+            padding: 8px 20px;
+            border-radius: 25px;
+            margin: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--primary-gold), var(--primary-dark));
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 160, 23, 0.3);
+        }
+        
+        .pagination-wrapper {
+            margin-top: 4rem;
+        }
+        
+        .pagination .page-link {
+            color: var(--primary-gold);
+            border: 2px solid var(--primary-gold);
+            margin: 0 2px;
+            border-radius: 50px;
+            padding: 10px 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .pagination .page-item.active .page-link {
+            background: linear-gradient(135deg, var(--primary-gold), var(--primary-dark));
+            border-color: var(--primary-gold);
+        }
+        
+        .pagination .page-link:hover {
+            background: linear-gradient(135deg, var(--primary-gold), var(--primary-dark));
+            border-color: var(--primary-gold);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .blog-header {
+                padding: 120px 0 80px;
+            }
+            
+            .blog-card {
+                margin-bottom: 2rem;
+            }
+            
+            .filter-btn {
+                display: block;
+                width: 100%;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo.png" alt="Beehive Lodge" height="50" class="d-none">
+                <span class="brand-text">Beehive Lodge</span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">À propos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="features.html">Fonctionnalités</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary ms-2" href="demo.html">Demander une démo</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Header -->
+    <section class="blog-header">
+        <div class="container">
+            <h1 class="display-3 mb-3" data-aos="fade-up">Notre Blog</h1>
+            <p class="lead mb-0" data-aos="fade-up" data-aos-delay="200">Découvrez nos conseils, expériences et actualités</p>
+        </div>
+    </section>
+
+    <!-- Blog Content -->
+    <section class="py-5">
+        <div class="container">
+            <!-- Category Filters -->
+            <div class="category-filters text-center" data-aos="fade-up">
+                <button class="filter-btn active" data-category="all">Tous les articles</button>
+                <button class="filter-btn" data-category="voyage">Voyage</button>
+                <button class="filter-btn" data-category="bien-etre">Bien-être</button>
+                <button class="filter-btn" data-category="temoignages">Témoignages</button>
+            </div>
+
+            <!-- Blog Posts Grid -->
+            <div class="row" id="blogGrid">
+                <!-- Blog Post 1 -->
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <article class="blog-card" data-category="voyage">
+                        <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                            <span class="blog-category">Voyage</span>
+                        </div>
+                        <div class="blog-content">
+                            <h3 class="blog-title">10 Conseils pour un Voyage de Luxe Réussi</h3>
+                            <p class="blog-excerpt">Découvrez nos secrets pour transformer chaque voyage en une expérience inoubliable, de la planification au retour.</p>
+                            <div class="blog-meta">
+                                <div class="blog-author">
+                                    <i class="fas fa-user"></i>
+                                    <span>Sophie Dubois</span>
+                                </div>
+                                <div class="blog-date">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>15 Mars 2024</span>
+                                </div>
+                            </div>
+                            <a href="#" class="read-more-btn">Lire la suite</a>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Blog Post 2 -->
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <article class="blog-card" data-category="bien-etre">
+                        <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                            <span class="blog-category">Bien-être</span>
+                        </div>
+                        <div class="blog-content">
+                            <h3 class="blog-title">Les Secrets de notre Spa Premium</h3>
+                            <p class="blog-excerpt">Plongez dans l'univers de la détente avec nos soins exclusifs et nos techniques de relaxation innovantes.</p>
+                            <div class="blog-meta">
+                                <div class="blog-author">
+                                    <i class="fas fa-user"></i>
+                                    <span>Marie Laurent</span>
+                                </div>
+                                <div class="blog-date">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>12 Mars 2024</span>
+                                </div>
+                            </div>
+                            <a href="#" class="read-more-btn">Lire la suite</a>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Blog Post 3 -->
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <article class="blog-card" data-category="temoignages">
+                        <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1564501049412-61c2a3083791?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                            <span class="blog-category">Témoignages</span>
+                        </div>
+                        <div class="blog-content">
+                            <h3 class="blog-title">Une Lune de Miel Inoubliable</h3>
+                            <p class="blog-excerpt">Découvrez le témoignage touchant de Claire et Thomas qui ont célébré leur amour dans notre suite présidentielle.</p>
+                            <div class="blog-meta">
+                                <div class="blog-author">
+                                    <i class="fas fa-user"></i>
+                                    <span>Claire Martin</span>
+                                </div>
+                                <div class="blog-date">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>10 Mars 2024</span>
+                                </div>
+                            </div>
+                            <a href="#" class="read-more-btn">Lire la suite</a>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Blog Post 4 -->
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <article class="blog-card" data-category="voyage">
+                        <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1582719508461-905c673771fd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2125&q=80');">
+                            <span class="blog-category">Voyage</span>
+                        </div>
+                        <div class="blog-content">
+                            <h3 class="blog-title">Découvrir les Trésors Locaux</h3>
+                            <p class="blog-excerpt">Notre guide des attractions incontournables et des expériences authentiques à vivre près de Beehive Lodge.</p>
+                            <div class="blog-meta">
+                                <div class="blog-author">
+                                    <i class="fas fa-user"></i>
+                                    <span>Pierre Moreau</span>
+                                </div>
+                                <div class="blog-date">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>8 Mars 2024</span>
+                                </div>
+                            </div>
+                            <a href="#" class="read-more-btn">Lire la suite</a>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Blog Post 5 -->
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <article class="blog-card" data-category="bien-etre">
+                        <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                            <span class="blog-category">Bien-être</span>
+                        </div>
+                        <div class="blog-content">
+                            <h3 class="blog-title">Yoga & Méditation au Lever du Soleil</h3>
+                            <p class="blog-excerpt">Commencez votre journée en harmonie avec nos sessions de yoga matinales dans un cadre exceptionnel.</p>
+                            <div class="blog-meta">
+                                <div class="blog-author">
+                                    <i class="fas fa-user"></i>
+                                    <span>Emma Rousseau</span>
+                                </div>
+                                <div class="blog-date">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>5 Mars 2024</span>
+                                </div>
+                            </div>
+                            <a href="#" class="read-more-btn">Lire la suite</a>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Blog Post 6 -->
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <article class="blog-card" data-category="temoignages">
+                        <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                            <span class="blog-category">Témoignages</span>
+                        </div>
+                        <div class="blog-content">
+                            <h3 class="blog-title">Un Événement Corporate Réussi</h3>
+                            <p class="blog-excerpt">Comment Beehive Lodge a transformé le séminaire d'entreprise de TechCorp en une expérience mémorable.</p>
+                            <div class="blog-meta">
+                                <div class="blog-author">
+                                    <i class="fas fa-user"></i>
+                                    <span>Jean Durand</span>
+                                </div>
+                                <div class="blog-date">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>3 Mars 2024</span>
+                                </div>
+                            </div>
+                            <a href="#" class="read-more-btn">Lire la suite</a>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Blog Post 7 -->
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <article class="blog-card" data-category="voyage">
+                        <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                            <span class="blog-category">Voyage</span>
+                        </div>
+                        <div class="blog-content">
+                            <h3 class="blog-title">Gastronomie d'Exception</h3>
+                            <p class="blog-excerpt">Rencontrez notre chef étoilé et découvrez les secrets de notre cuisine raffinée aux saveurs locales.</p>
+                            <div class="blog-meta">
+                                <div class="blog-author">
+                                    <i class="fas fa-user"></i>
+                                    <span>Chef Antoine</span>
+                                </div>
+                                <div class="blog-date">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>1 Mars 2024</span>
+                                </div>
+                            </div>
+                            <a href="#" class="read-more-btn">Lire la suite</a>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Blog Post 8 -->
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <article class="blog-card" data-category="bien-etre">
+                        <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                            <span class="blog-category">Bien-être</span>
+                        </div>
+                        <div class="blog-content">
+                            <h3 class="blog-title">Détox Digitale : Reconnectez avec l'Essentiel</h3>
+                            <p class="blog-excerpt">Découvrez nos programmes de détox digitale pour retrouver l'équilibre dans un monde hyperconnecté.</p>
+                            <div class="blog-meta">
+                                <div class="blog-author">
+                                    <i class="fas fa-user"></i>
+                                    <span>Dr. Sarah Blake</span>
+                                </div>
+                                <div class="blog-date">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>28 Février 2024</span>
+                                </div>
+                            </div>
+                            <a href="#" class="read-more-btn">Lire la suite</a>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Blog Post 9 -->
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <article class="blog-card" data-category="temoignages">
+                        <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                            <span class="blog-category">Témoignages</span>
+                        </div>
+                        <div class="blog-content">
+                            <h3 class="blog-title">90 Ans Fêtés avec Style</h3>
+                            <p class="blog-excerpt">L'histoire émouvante de Madame Germaine qui a célébré ses 90 ans entourée de ses proches dans notre salon privé.</p>
+                            <div class="blog-meta">
+                                <div class="blog-author">
+                                    <i class="fas fa-user"></i>
+                                    <span>Famille Germain</span>
+                                </div>
+                                <div class="blog-date">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>25 Février 2024</span>
+                                </div>
+                            </div>
+                            <a href="#" class="read-more-btn">Lire la suite</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination-wrapper d-flex justify-content-center" data-aos="fade-up">
+                <nav aria-label="Blog pagination">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                        </li>
+                        <li class="page-item active">
+                            <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h2 class="display-5 mb-3" data-aos="fade-right">Ne manquez aucune actualité</h2>
+                    <p class="lead mb-0" data-aos="fade-right" data-aos-delay="200">Abonnez-vous à notre newsletter pour recevoir nos derniers articles et offres exclusives</p>
+                </div>
+                <div class="col-lg-4 text-end">
+                    <a href="contact.html" class="btn btn-light btn-lg" data-aos="fade-left">S'abonner</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="mb-3">Beehive Lodge</h5>
+                    <p class="mb-3">Votre destination de luxe pour un séjour d'exception.</p>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 mb-4">
+                    <h6 class="mb-3">Navigation</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-light">Accueil</a></li>
+                        <li><a href="about.html" class="text-light">À propos</a></li>
+                        <li><a href="features.html" class="text-light">Services</a></li>
+                        <li><a href="blog.html" class="text-light">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 mb-4">
+                    <h6 class="mb-3">Services</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light">Hébergement</a></li>
+                        <li><a href="#" class="text-light">Restauration</a></li>
+                        <li><a href="#" class="text-light">Événements</a></li>
+                        <li><a href="#" class="text-light">Bien-être</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h6 class="mb-3">Contact</h6>
+                    <p><i class="fas fa-map-marker-alt me-2"></i>123 Avenue Luxe, Ville</p>
+                    <p><i class="fas fa-phone me-2"></i>+33 1 23 45 67 89</p>
+                    <p><i class="fas fa-envelope me-2"></i>info@beechivelodge.com</p>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0">&copy; 2024 Beehive Lodge. Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/33123456789" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    
+    <!-- Blog Filter Script -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+        
+        // Blog filtering functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const blogCards = document.querySelectorAll('.blog-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-category');
+                    
+                    // Filter blog cards
+                    blogCards.forEach(card => {
+                        const cardCategory = card.getAttribute('data-category');
+                        const cardContainer = card.closest('.col-lg-4');
+                        
+                        if (category === 'all' || cardCategory === category) {
+                            cardContainer.style.display = 'block';
+                            setTimeout(() => {
+                                cardContainer.style.opacity = '1';
+                                cardContainer.style.transform = 'translateY(0)';
+                            }, 100);
+                        } else {
+                            cardContainer.style.opacity = '0';
+                            cardContainer.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                cardContainer.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+            
+            // Add hover effects to blog cards
+            blogCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('mainNavbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
